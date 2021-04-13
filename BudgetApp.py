@@ -10,16 +10,16 @@ class Budget:
         depositTo = int(input("Select where to add your deposit to \n 1. Food \n 2. Clothing \n 3. Entertainment \n"))
         if depositTo == 1:
             foodBudget = depositAmount + self.food
-            print("Your new budget allocation for food is " + str(foodBudget) )
+            print("Your new budget allocation balance for food is " + str(foodBudget) )
         elif depositTo == 2:
             clothingBudget = depositAmount + self.clothing
-            print("Your new budget allocation for clothing is " + str(clothingBudget) )
+            print("Your new budget allocation balance for clothing is " + str(clothingBudget) )
         elif depositTo == 3:
             entertainmentBudget = depositAmount + self.entertainment
-            print("Your new budget allocation for clothing is " + str(entertainmentBudget) )
+            print("Your new budget allocation balance for entertainment is " + str(entertainmentBudget) )
         else:
             print("select a valid option")
-            deposit()
+
             
     def withdraw(self):
         withdrawFrom = int(input("Select budget account from which you want to withdraw \n 1. Food \n 2. Clothing \n 3. Entertainment \n " ))
@@ -48,7 +48,8 @@ class Budget:
                 print("Your food budget balance is " + str(entertainmentBudget))
             else:
                 print("The amount selected is above your food budget balance of " + str(self.entertainment) )
-
+        else:
+            print("Invalid selection")
 
 
     def transfer(self):
@@ -67,31 +68,47 @@ class Budget:
                     transferTo = budgetOption.get(3)
     '''
         transferTo = int(input("Select receiving account. \n 1. Food Budget \n 2. Clothing Budget \n 3. Entertainment Budget\n"))
+        # when sourceAccount is 1
         if transferTo == 1 and sourceAccount == 1:
             print (" You cannot transfer to the same account\n Transfer Not Allowed.")
         elif transferTo == 2 and sourceAccount == 1:
-            print("You have sucessfully transferred "+ str(transferAmount) + " to " + str(transferTo))
-            print("Your new "+ str(transferTo) + " balance is " + str( transferAmount+self.clothing))
+            print("You have sucessfully transferred "+ str(transferAmount) + " to clothing budget")
+            print("Your new clothing budget balance is " + str( transferAmount+self.clothing))
         elif transferTo == 3 and sourceAccount == 1:
-            print("You have sucessfully transferred "+ str(transferAmount) + " to " + str(transferTo))
-            print("Your new "+ str(transferTo) + " balance is " + str( transferAmount+self.clothing))
+            print("You have sucessfully transferred "+ str(transferAmount) + " to entertainment budget ")
+            print("Your new entertainment budget balance is " + str( transferAmount+self.entertainment))
+        # sourceAccount is 2
+        elif transferTo == 2 and sourceAccount == 2:
+            print (" You cannot transfer to the same account\n Transfer Not Allowed.")
+        elif transferTo == 1 and sourceAccount == 2:
+            print("You have sucessfully transferred "+ str(transferAmount) + " to food budget")
+            print("Your new food budget balance is " + str( transferAmount+self.food))
+        elif transferTo == 3 and sourceAccount == 2:
+            print("You have sucessfully transferred "+ str(transferAmount) + " to entertainment budget ")
+            print("Your new entertainment budget balance is " + str( transferAmount+self.entertainment))
+        # sourceAccount is from 3
+        elif transferTo == 3 and sourceAccount == 3:
+            print (" You cannot transfer to the same account\n Transfer Not Allowed.")
+        elif transferTo == 1 and sourceAccount == 3:
+            print("You have sucessfully transferred "+ str(transferAmount) + " to food budget")
+            print("Your new food budget balance is " + str( transferAmount+self.food))
+        elif transferTo == 2 and sourceAccount == 3:
+            print("You have sucessfully transferred "+ str(transferAmount) + " to clothing budget ")
+            print("Your new clothing budget balance is " + str( transferAmount+self.clothing))
+        else:
+            print("Invalid selection")
 
 
 
 
-        #pass the transferTo input to the object property
-        #if 1 == self.food and 2 == self.clothing and 3 == self.entertainment :
-
-
-    def  transferTransaction(transferTo,transferAmount) :
-        newBalance = transferTo+transferAmount
-        print(newBalance)
 
 
 
-
+#sample objects
 Budget_2020 = Budget(20000,12000,30000)
 Budget_2021 = Budget(30000,22000,40000)
-#Budget_2020.deposit()
-#Budget_2020.withdraw()
+
+
+Budget_2020.deposit()
+Budget_2020.withdraw()
 Budget_2020.transfer()
